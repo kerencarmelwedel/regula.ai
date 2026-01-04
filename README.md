@@ -67,24 +67,8 @@ Paste the full code from the App.jsx file in the Canvas.
 
 npm run dev
 
-
 The terminal will give you a link (usually http://localhost:5173). Open it in your browser.
 
-🌐 Deployment to Vercel
-
-Can I keep my GitHub repo private?
-
-Yes. Vercel supports private repositories even on the Free (Hobby) tier.
-
-Push your code to a Private Repository on GitHub.
-
-Log in to Vercel.
-
-Click Add New > Project.
-
-Import your private regula-ai repository.
-
-Vercel will automatically detect Vite and Tailwind settings. Click Deploy.
 
 🛠 Tech Stack
 
