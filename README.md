@@ -1,16 +1,99 @@
-# React + Vite
+Regula.ai - Spatial AI One-Pager
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is the official one-pager for Regula.ai, a platform designed to decode urban regulations into spatial data.
 
-Currently, two official plugins are available:
+🚀 Quick Start (Local Development)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+If you haven't been able to run the project locally, follow these exact steps. We use Vite because it is faster and more modern than Create React App.
 
-## React Compiler
+1. Initialize the Project
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+Open your terminal in an empty folder and run:
 
-## Expanding the ESLint configuration
+# Create a new Vite project
+npm create vite@latest . -- --template react
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+# Install basic dependencies
+npm install
+
+
+2. Install UI Dependencies
+
+The project requires Tailwind CSS and Lucide Icons. Run:
+
+# Install Tailwind and its peers
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init -p
+
+# Install Icons
+npm install lucide-react
+
+
+3. Configuration Files
+
+To make sure the design looks correct, you must update these two files in your project root:
+
+Update tailwind.config.js:
+
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+}
+
+
+Update src/index.css (Delete everything and paste this):
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+4. Add the Code
+
+Open src/App.jsx.
+
+Delete all existing content.
+
+Paste the full code from the App.jsx file in the Canvas.
+
+5. Run it!
+
+npm run dev
+
+
+The terminal will give you a link (usually http://localhost:5173). Open it in your browser.
+
+🌐 Deployment to Vercel
+
+Can I keep my GitHub repo private?
+
+Yes. Vercel supports private repositories even on the Free (Hobby) tier.
+
+Push your code to a Private Repository on GitHub.
+
+Log in to Vercel.
+
+Click Add New > Project.
+
+Import your private regula-ai repository.
+
+Vercel will automatically detect Vite and Tailwind settings. Click Deploy.
+
+🛠 Tech Stack
+
+Framework: React.js (Vite)
+
+Styling: Tailwind CSS
+
+Icons: Lucide-React
+
+Animations: Standard Tailwind transitions & CSS keyframes
+
+© 2026 Regula AI. All rights reserved.
