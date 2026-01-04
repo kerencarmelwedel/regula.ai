@@ -52,10 +52,31 @@ const App = () => {
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleFormSubmit = (e) => {
+  const handleFormSubmit = async (e) => {
     e.preventDefault();
     setFormStatus('loading');
-    setTimeout(() => setFormStatus('success'), 1500);
+    
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('https://formspree.io/f/mqeaggyl', {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        setFormStatus('success');
+      } else {
+        setFormStatus('error');
+      }
+    } catch (error) {
+      setFormStatus('error');
+    }
   };
 
   return (
@@ -193,12 +214,27 @@ const App = () => {
               <CheckCircle2 className="w-12 h-12 text-emerald-400 mx-auto mb-4" />
               <h3 className="text-xl font-bold">Inquiry Sent!</h3>
             </div>
+            
           ) : (
-            <form onSubmit={handleFormSubmit} className="max-w-md mx-auto space-y-3">
-              <input type="text" placeholder="Full Name" required className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-3 focus:outline-none focus:border-emerald-500 transition-colors text-sm" />
-              <input type="email" placeholder="Business Email" required className="w-full bg-zinc-900/50 border border-white/10 rounded-xl px-5 py-3 focus:outline-none focus:border-emerald-500 transition-colors text-sm" />
-              <button className="w-full py-4 bg-emerald-500 text-black rounded-xl font-black text-lg hover:bg-emerald-400 transition-all">Submit Inquiry</button>
-            </form>
+          <form onSubmit={handleFormSubmit} className="space-y-3">
+            <input 
+              name="name" 
+              type="text" 
+              required 
+              placeholder="Full Name" 
+              className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 text-xs text-white" 
+            />
+            <input 
+              name="email" 
+              type="email" 
+              required 
+              placeholder="Email" 
+              className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 text-xs text-white" 
+            />
+            <button className="w-full py-3 bg-emerald-500 text-black rounded-xl font-bold text-sm hover:bg-emerald-400 transition-all mt-4">
+              Join Waiting List
+            </button>
+          </form>
           )}
         </div>
       </section>
@@ -221,9 +257,24 @@ const App = () => {
                 <p className="text-zinc-500 text-xs italic">Decode regulations in your city.</p>
               </div>
               <form onSubmit={handleFormSubmit} className="space-y-3">
-                <input type="text" required placeholder="Full Name" className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 text-xs" />
-                <input type="email" required placeholder="Email" className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 text-xs" />
-                <button className="w-full py-3 bg-emerald-500 text-black rounded-xl font-bold text-sm hover:bg-emerald-400 transition-all mt-4">Join Waiting List</button>
+                <input 
+                  name="name" 
+                  type="text" 
+                  required 
+                  placeholder="Full Name" 
+                  className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 text-xs text-white" 
+                />
+                  <input 
+                  name="email" 
+                  type="email" 
+                  required 
+                  placeholder="Email" 
+                  className="w-full bg-zinc-900 border border-white/5 rounded-xl px-4 py-2.5 focus:outline-none focus:border-emerald-500 text-xs text-white" 
+                />
+                
+                <button className="w-full py-3 bg-emerald-500 text-black rounded-xl font-bold text-sm hover:bg-emerald-400 transition-all mt-4">
+                  Submit Inquiry
+                </button>
               </form>
            </div>
         </div>
